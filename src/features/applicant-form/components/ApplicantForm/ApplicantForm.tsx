@@ -1,22 +1,22 @@
-import css from './Form.module.scss'
+import css from './ApplicantForm.module.scss'
 import Button from '@/components/Button';
 import FormField from '@/components/FormField';
 import Input from '@/components/Input';
 import Radio from '@/components/Radio';
-import FileInput from '@/components/FileButton'
+import FileInput from '@/components/FileInput'
 import { ChangeEvent, FocusEvent } from 'react'
-import { FormData } from '../../types/applicant-form'
+import { TFormData, TFormErrors } from '../../types/applicant-form'
 
-type FormProps = {
-  formData: FormData;
-  formErrors: FormData;
+type TFormProps = {
+  formData: TFormData;
+  formErrors: TFormErrors;
   isDisabledSubmit: boolean;
   onChangeFormField: (fieldName: string, event: ChangeEvent<HTMLInputElement>) => void;
   onBlurFormField: (fieldName: string, event: FocusEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
 };
 
-const Form = ({ formData, formErrors, isDisabledSubmit, onChangeFormField, onBlurFormField, onSubmit }: FormProps) => {
+const ApplicantForm = ({ formData, formErrors, isDisabledSubmit, onChangeFormField, onBlurFormField, onSubmit }: TFormProps) => {
   return (
     <div className={css.root}>
       <div className={css.section}>
@@ -138,4 +138,4 @@ const Form = ({ formData, formErrors, isDisabledSubmit, onChangeFormField, onBlu
   )
 }
 
-export default Form;
+export default ApplicantForm;

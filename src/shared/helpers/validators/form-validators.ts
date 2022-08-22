@@ -1,5 +1,5 @@
 const ONLY_LETTERS_REGEX = /^[а-яА-Яa-zA-Z]+$/
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
 export const name = (value: string) => {
   let message = ''

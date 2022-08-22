@@ -1,9 +1,9 @@
-import { FormContainer } from '@/features/applicant-form'
+import { ApplicantFormContainer } from '@/features/applicant-form'
 
 export default function Home() {
   return (
     <div className='container'>
-      <FormContainer />
+      <ApplicantFormContainer />
     </div>
   );
 }

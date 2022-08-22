@@ -7,7 +7,7 @@ type ButtonProps = {
   className?: string;
   disabled?: boolean;
   buttonText: string;
-  value?: File | undefined
+  value?: File | undefined;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -20,7 +20,7 @@ const FileInput = ({ className, buttonText, value, ...props }: ButtonProps) => {
 
   const onClickResetFile = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
-    hiddenFileInput.current.target = ''
+    // hiddenFileInput.current.target = ''
   }
 
   return (
