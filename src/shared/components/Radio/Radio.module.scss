@@ -1,30 +1,29 @@
 @import 'style/vars';
 
 .root {
-  -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
-  margin: 0;
-  font: inherit;
-  width: 16px;
-  height: 16px;
+  background-color: $colorGray1;
   border: 1px solid $colorGray5;
   border-radius: 50%;
-  position: relative;
   cursor: pointer;
+  font: inherit;
+  height: 16px;
+  margin: 0;
+  position: relative;
+  width: 16px;
 
   &::before {
+    background: $colorBlueDefault;
+    border-radius: 50%;
     content: '';
     display: block;
+    height: 8px;
+    left: 3px;
     position: absolute;
     top: 3px;
-    left: 3px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
     transform: scale(0);
     transition: .2s transform ease-in-out;
-    background: $colorBlueDefault;
+    width: 8px;
   }
 
   &:checked {

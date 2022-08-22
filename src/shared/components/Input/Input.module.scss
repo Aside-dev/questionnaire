@@ -1,18 +1,18 @@
 @import 'style/vars';
 
 .root {
+  background: $colorGray1;
   border: 1px solid $colorGray5;
   border-radius: 2px;
-  font-weight: 400;
-  font-size: $fontSizeStandard;
-  line-height: 1.5em;
-  padding: 8px 12px;
-  outline: none;
   color: $colorGray8;
-  transition: border-color .2s ease-in-out;
-  background: $colorGray1;
-  width: 100%;
+  font-size: $fontSizeStandard;
+  font-weight: 400;
+  line-height: 1.5em;
   max-width: 100%;
+  outline: none;
+  padding: 8px 12px;
+  transition: border-color .2s ease-in-out;
+  width: 100%;
 
   &::placeholder {
     color: $colorGray6;
@@ -24,7 +24,7 @@
 
   &:focus {
     border-color: $colorBlueHover;
-    box-shadow: 0 0 4px rgba(24, 144, 255, .5);
+    box-shadow: 0 0 4px rgb(24 144 255 / 50%);
   }
 
   &:disabled {
@@ -43,7 +43,7 @@
 
     &:focus {
       border-color: $colorError;
-      box-shadow: 0 0 4px rgba(24, 144, 255, .5);
+      box-shadow: 0 0 4px rgb(24 144 255 / 50%);
     }
   }
 }

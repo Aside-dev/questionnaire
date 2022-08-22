@@ -1,9 +1,9 @@
-import Form from '../../components/Form'
+import ApplicantForm from '../../components/ApplicantForm'
 import { ChangeEvent, FocusEvent, useMemo, useState } from "react";
 import { formValidators } from '@/helpers/validators'
-import { FormData } from '../../types/applicant-form'
+import { TFormData, TFormErrors } from '../../types/applicant-form'
 
-const INITIAL_FORM_DATA: FormData = {
+const INITIAL_FORM_DATA: TFormData = {
   name: '',
   surname: '',
   email: '',
@@ -12,9 +12,18 @@ const INITIAL_FORM_DATA: FormData = {
   github: ''
 }
 
-const FormContainer = () => {
+const INITIAL_FORM_ERRORS: TFormErrors = {
+  name: '',
+  surname: '',
+  email: '',
+  gender: '',
+  file: '',
+  github: ''
+}
+
+const ApplicantFormContainer = () => {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA)
-  const [formErrors, setFormErrors] = useState(INITIAL_FORM_DATA)
+  const [formErrors, setFormErrors] = useState(INITIAL_FORM_ERRORS)
   const formRequiredFields = Object.keys(INITIAL_FORM_DATA).filter(field => !['file', 'github'].includes(field))
   const errorMessageDictionary = {
     empty: 'Поле не должно быть пустым',
@@ -23,7 +32,7 @@ const FormContainer = () => {
   }
 
   /**
-   * Указывает не то, что не все обязательные поля заполнены
+   * Указывает на то, что не все обязательные поля заполнены
    */
   const isEmptyRequiredFields: boolean = useMemo(() => {
     const filledFields = formRequiredFields.filter((fieldName) => {
@@ -38,16 +47,16 @@ const FormContainer = () => {
    * @param fieldName - имя поля
    * @param fieldValue - имя поля
    */
-  const validateField = (fieldName: string, fieldValue: string) => {
+  const validateField = (fieldName: string, fieldValue: string | undefined) => {
     let error = ''
 
     if (['name', 'surname'].includes(fieldName)) {
-      const validField = formValidators.name(fieldValue)
+      const validField = formValidators.name(fieldValue || '')
       error = validField.message && errorMessageDictionary[validField.message as keyof typeof errorMessageDictionary] || ''
     }
 
     if (fieldName === 'email') {
-      const validField = formValidators.email(fieldValue)
+      const validField = formValidators.email(fieldValue || '')
       error = validField.message && errorMessageDictionary[validField.message as keyof typeof errorMessageDictionary] || ''
     }
 
@@ -64,7 +73,7 @@ const FormContainer = () => {
    * @param event - объект ивента
    */
   const onChangeFormField = (fieldName: string, event: ChangeEvent<HTMLInputElement>) => {
-    const value = fieldName === 'file' ? (event.target.files || [])[0] || undefined : event.target.value
+    const value = fieldName === 'file' ? (event.target.files || [])[0] || '' : event.target.value
 
     setFormData({ ...formData, [fieldName]: value })
     setFormErrors({ ...formErrors, [fieldName]: '' })
@@ -85,17 +94,31 @@ const FormContainer = () => {
    * Событие отправки формы
    */
   const onSubmitForm = () => {
-    const errors = { ...INITIAL_FORM_DATA }
+    const errors = { ...INITIAL_FORM_ERRORS }
+    const reqFormData = new FormData()
 
-    Object.keys(formData).forEach(fieldName => {
+    Object.keys(formData).forEach((fieldName: string) => {
+
+      // @ts-ignore
       errors[fieldName as keyof typeof errors] = validateField(fieldName, formData[fieldName as keyof typeof formData])
+      // @ts-ignore
+      reqFormData.append(fieldName, formData[fieldName as keyof typeof formData])
     })
 
     setFormErrors({ ...formErrors, ...errors })
+
+    if (Object.values(errors).filter(error => !!error).length) {
+      return null
+    }
+
+    // fetch('http://localhost:3000/api/applicant-form', {
+    //   method: 'POST',
+    //   body: reqFormData
+    // }).then(r => )
   }
 
   return (
-    <Form
+    <ApplicantForm
       formData={formData}
       formErrors={formErrors}
       isDisabledSubmit={isEmptyRequiredFields}
@@ -106,4 +129,4 @@ const FormContainer = () => {
   )
 }
 
-export default FormContainer;
+export default ApplicantFormContainer;

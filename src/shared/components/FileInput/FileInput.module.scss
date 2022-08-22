@@ -1,77 +1,65 @@
 @import 'style/vars';
 
-.root {
-  position: relative;
-  max-width: 100%;
-}
-
 .input {
   display: none;
 }
 
 .uploadButton {
-  padding: 8px 20px;
   background: $colorGray3;
   border: 1px dashed $colorGray5;
-  text-align: center;
-  cursor: pointer;
   border-radius: 2px;
+  cursor: pointer;
+  padding: 8px 20px;
+  text-align: center;
 }
 
 .labelButton {
-  transition: .2s ease-in-out;
+  align-items: center;
   cursor: pointer;
-  padding: 3px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  padding: 3px;
   position: relative;
+  transition: .2s ease-in-out;
+  width: 100%;
 
   &:hover {
-    color: $colorBlueHover;
     background: $colorBlue1;
+    color: $colorBlueHover;
   }
 }
 
 .label {
-  flex: 1;
-  display: flex;
   align-items: center;
+  display: flex;
+  flex: 1;
 }
 
 .labelText {
-  font-weight: 400;
-  font-size: $fontSizeSmall;
-  line-height: 1.5em;
   color: $colorBlueDefault;
-  width: calc(100% - 48px);
-  white-space: nowrap;
+  font-size: $fontSizeSmall;
+  font-weight: 400;
+  line-height: 1.5em;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 24px);
 }
 
 .paperClipIcon {
+  height: 16px;
   margin-right: 8px;
   vertical-align: middle;
   width: 16px;
-  height: 16px;
 }
 
 .resetBtn {
-  width: 16px;
-  height: 16px;
+  background: transparent;
   border: none;
+  cursor: pointer;
+  height: 16px;
+  margin-left: 8px;
   outline: none;
   padding: 0;
-  background: transparent;
-  cursor: pointer;
-  margin-left: 8px;
-}
-
-.buttonText {
-  color: $colorGray8;
-  font-weight: 400;
-  font-size: $fontSizeSmall;
-  line-height: 1.5em;
+  width: 16px;
 }

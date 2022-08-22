@@ -1,17 +1,17 @@
 @import 'style/vars';
 
 .root {
-  border-radius: 2px;
-  font-weight: 400;
-  font-size: $fontSizeStandard;
-  line-height: 1.5em;
-  text-align: center;
-  color: $colorGray1;
-  padding: 8px 32px;
-  outline: none;
   background: $colorBlueDefault;
   border: 1px solid $colorBlueDefault;
+  border-radius: 2px;
+  color: $colorGray1;
   cursor: pointer;
+  font-size: $fontSizeStandard;
+  font-weight: 400;
+  line-height: 1.5em;
+  outline: none;
+  padding: 8px 32px;
+  text-align: center;
   transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
 
   &:hover {
@@ -30,9 +30,9 @@
   }
 
   &:disabled {
+    background: transparent;
     border-color: $colorGray5;
     color: $colorGray6;
-    background: transparent;
     pointer-events: none;
   }
 }
