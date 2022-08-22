@@ -1,0 +1,77 @@
+@import 'style/vars';
+
+.root {
+  position: relative;
+  max-width: 100%;
+}
+
+.input {
+  display: none;
+}
+
+.uploadButton {
+  padding: 8px 20px;
+  background: $colorGray3;
+  border: 1px dashed $colorGray5;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.labelButton {
+  transition: .2s ease-in-out;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  &:hover {
+    color: $colorBlueHover;
+    background: $colorBlue1;
+  }
+}
+
+.label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.labelText {
+  font-weight: 400;
+  font-size: $fontSizeSmall;
+  line-height: 1.5em;
+  color: $colorBlueDefault;
+  width: calc(100% - 48px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.paperClipIcon {
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+}
+
+.resetBtn {
+  width: 16px;
+  height: 16px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.buttonText {
+  color: $colorGray8;
+  font-weight: 400;
+  font-size: $fontSizeSmall;
+  line-height: 1.5em;
+}

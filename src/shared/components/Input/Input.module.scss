@@ -1,0 +1,49 @@
+@import 'style/vars';
+
+.root {
+  border: 1px solid $colorGray5;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: $fontSizeStandard;
+  line-height: 1.5em;
+  padding: 8px 12px;
+  outline: none;
+  color: $colorGray8;
+  transition: border-color .2s ease-in-out;
+  background: $colorGray1;
+  width: 100%;
+  max-width: 100%;
+
+  &::placeholder {
+    color: $colorGray6;
+  }
+
+  &:hover {
+    border-color: $colorBlueHover;
+  }
+
+  &:focus {
+    border-color: $colorBlueHover;
+    box-shadow: 0 0 4px rgba(24, 144, 255, .5);
+  }
+
+  &:disabled {
+    background: $colorGray3;
+    color: $colorGray6;
+    pointer-events: none;
+  }
+
+  &_error {
+    border-color: $colorError;
+    color: $colorError;
+
+    &::placeholder {
+      color: $colorError;
+    }
+
+    &:focus {
+      border-color: $colorError;
+      box-shadow: 0 0 4px rgba(24, 144, 255, .5);
+    }
+  }
+}

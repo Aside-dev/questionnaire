@@ -1,0 +1,75 @@
+@import 'style/vars';
+@import 'style/mixins';
+
+.root {
+  width: 100%;
+  padding: 16px;
+
+  @media screen and (min-width: $desktop) {
+    max-width: 600px;
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  @include h3;
+  margin-bottom: 24px;
+}
+
+.sectionTitleErrorText {
+  color: $colorError;
+  font-size: $fontSizeSmall;
+  line-height: 1.5em;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.sectionContent {
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -40px;
+  }
+}
+
+.fileInput {
+  margin-top: 24px;
+}
+
+.inputField {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex: 0 0 50%;
+    padding: 0 40px;
+  }
+}
+
+.radioRow {
+  display: flex;
+}
+
+.radioField {
+  margin-right: 40px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex: 0 0 50%;
+    padding: 0 40px;
+    margin-right: 0;
+  }
+}
+
+.button {
+  width: 100%;
+}

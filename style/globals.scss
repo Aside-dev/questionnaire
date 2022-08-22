@@ -1,5 +1,24 @@
 @import '~reset-css/sass/reset';
+@import 'style/vars';
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: $fontSizeStandard;
+  line-height: 1.5em;
+  color: $colorGray9;
+}
+
+.container {
+  width: 100%;
+
+  @media screen and (min-width: $desktop) {
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

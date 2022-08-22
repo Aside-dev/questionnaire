@@ -1,5 +1,38 @@
 @import 'style/vars';
 
 .root {
-  // add styles
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: $fontSizeStandard;
+  line-height: 1.5em;
+  text-align: center;
+  color: $colorGray1;
+  padding: 8px 32px;
+  outline: none;
+  background: $colorBlueDefault;
+  border: 1px solid $colorBlueDefault;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+
+  &:hover {
+    background: $colorBlueHover;
+    border-color: $colorBlueHover;
+  }
+
+  &:focus {
+    background: $colorBlueFocused;
+    border-color: $colorBlueFocused;
+  }
+
+  &:active {
+    background: $colorBlueFocused;
+    border-color: $colorBlueFocused;
+  }
+
+  &:disabled {
+    border-color: $colorGray5;
+    color: $colorGray6;
+    background: transparent;
+    pointer-events: none;
+  }
 }

@@ -1,3 +1,9 @@
+import { FormContainer } from '@/features/applicant-form'
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className='container'>
+      <FormContainer />
+    </div>
+  );
 }

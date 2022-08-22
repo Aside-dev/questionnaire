@@ -1,0 +1,15 @@
+@import 'style/vars';
+
+@mixin h1 {
+  font-size: $fontSizeH1;
+  line-height: 1.05em;
+  color: $colorGray9;
+  font-weight: 600;
+}
+
+@mixin h3 {
+  font-size: $fontSizeH3;
+  line-height: 1.7em;
+  color: $colorGray9;
+  font-weight: 600;
+}

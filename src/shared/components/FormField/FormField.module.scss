@@ -1,0 +1,26 @@
+@import 'style/vars';
+
+.labelRight {
+  display: flex;
+  align-items: center;
+}
+
+.labelText {
+  color: $colorGray9;
+  font-size: $fontSizeSmall;
+  line-height: 1.5em;
+  font-weight: 400;
+  margin-bottom: 2px;
+}
+
+.labelTextRight {
+  margin-left: 8px;
+  margin-bottom: 0;
+}
+
+.error {
+  color: $colorError;
+  font-size: $fontSizeSmall;
+  line-height: 1.5em;
+  font-weight: 400;
+}
