@@ -1,10 +1,18 @@
 @import 'style/vars';
 
 .root {
-  position: relative;
-  height: 16px;
-  width: 16px;
   display: inline-block;
+  height: 16px;
+  position: relative;
+  width: 16px;
+}
+
+.checkIcon {
+  left: 2px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 4px;
 }
 
 .input {
@@ -43,12 +51,4 @@
   &:checked + .checkIcon {
     opacity: 1;
   }
-}
-
-.checkIcon {
-  position: absolute;
-  top: 4px;
-  left: 2px;
-  opacity: 0;
-  pointer-events: none;
 }

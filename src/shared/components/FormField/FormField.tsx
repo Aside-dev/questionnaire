@@ -2,7 +2,7 @@ import css from './FormField.module.scss'
 import { ReactNode } from 'react';
 
 type FormFieldProps = {
-  labelText?: string | ReactNode;
+  labelText?: ReactNode;
   errorText?: string;
   labelPosition?: string;
   children: ReactNode;

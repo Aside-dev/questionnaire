@@ -40,6 +40,7 @@ const ApplicantForm = ({
     onBlurFormField,
     onSubmit
   }: TFormProps) => {
+  const privacyPolicyLink = <div>* Я согласен с <button className={css.privacyPolicyLink} onClick={onOpenPrivacyPolicyModal}>политикой конфиденциальности</button></div>
   return (
     <div className={css.root}>
       <header className={css.formHeader}>
@@ -156,7 +157,7 @@ const ApplicantForm = ({
       <div className={css.section}>
         <div className={css.sectionContent}>
         <FormField
-          labelText={<div>* Я согласен с <button className={css.privacyPolicyLink} onClick={onOpenPrivacyPolicyModal}>политикой конфиденциальности</button></div>}
+          labelText={privacyPolicyLink}
           labelPosition='right'
           className={css.checkboxField}
         >
