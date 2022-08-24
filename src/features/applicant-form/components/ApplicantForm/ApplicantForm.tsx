@@ -6,19 +6,45 @@ import Radio from '@/components/Radio';
 import FileInput from '@/components/FileInput'
 import { ChangeEvent, FocusEvent } from 'react'
 import { TFormData, TFormErrors } from '../../types/applicant-form'
+import Modal from "@/components/Modal";
+import Checkbox from "@/components/Checkbox";
+import PrivacyPolicyModal from '../PrivacyPolicyModal';
+import CloseIcon from "@/images/close-blue-24.svg";
 
 type TFormProps = {
   formData: TFormData;
   formErrors: TFormErrors;
   isDisabledSubmit: boolean;
+  isShowedSuccessModal: boolean;
+  isShowedPrivacyPolicyModal: boolean;
   onChangeFormField: (fieldName: string, event: ChangeEvent<HTMLInputElement>) => void;
   onBlurFormField: (fieldName: string, event: FocusEvent<HTMLInputElement>) => void;
+  onCloseSuccessModal: () => void;
+  onClosePrivacyPolicyModal: () => void;
+  onOpenPrivacyPolicyModal: () => void;
+  onClickIAgree: () => void;
   onSubmit: () => void;
 };
 
-const ApplicantForm = ({ formData, formErrors, isDisabledSubmit, onChangeFormField, onBlurFormField, onSubmit }: TFormProps) => {
+const ApplicantForm = ({
+    formData,
+    formErrors,
+    isDisabledSubmit,
+    isShowedSuccessModal,
+    isShowedPrivacyPolicyModal,
+    onCloseSuccessModal,
+    onClosePrivacyPolicyModal,
+    onOpenPrivacyPolicyModal,
+    onClickIAgree,
+    onChangeFormField,
+    onBlurFormField,
+    onSubmit
+  }: TFormProps) => {
   return (
     <div className={css.root}>
+      <header className={css.formHeader}>
+        <h1>Анкета соискателя</h1>
+      </header>
       <div className={css.section}>
         <div className={css.sectionTitle}>Личные данные</div>
         <div className={css.sectionContent}>
@@ -79,7 +105,7 @@ const ApplicantForm = ({ formData, formErrors, isDisabledSubmit, onChangeFormFie
           </FormField>
         </div>
       </div>
-      <div className={css.section}>
+      <div className={`${css.section}`}>
         <div className={css.sectionTitle}>
           Пол * { formErrors.gender && <span className={css.sectionTitleErrorText}>{formErrors.gender}</span> || null }
         </div>
@@ -127,13 +153,46 @@ const ApplicantForm = ({ formData, formErrors, isDisabledSubmit, onChangeFormFie
           </FormField>
         </div>
       </div>
+      <div className={css.section}>
+        <div className={css.sectionContent}>
+        <FormField
+          labelText={<div>* Я согласен с <button className={css.privacyPolicyLink} onClick={onOpenPrivacyPolicyModal}>политикой конфиденциальности</button></div>}
+          labelPosition='right'
+          className={css.checkboxField}
+        >
+          <Checkbox
+            checked={formData.privacyPolicy}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => onChangeFormField('privacyPolicy', event)}
+          />
+        </FormField>
+        </div>
+      </div>
       <Button
-        className={css.button}
+        className={css.submitButton}
         onClick={onSubmit}
         disabled={isDisabledSubmit}
       >
         Отправить
       </Button>
+      <Modal
+        isShowed={isShowedSuccessModal}
+        containerClassName={css.modalContainer}
+      >
+        <button className={css.successModalCloseButton} onClick={onCloseSuccessModal}><CloseIcon /></button>
+        <div className={css.successModalTitle}>Спасибо {formData.name}!</div>
+        <div className={css.successModalText}>Мы скоро свяжемся с вами</div>
+        <Button
+          className={css.closeSuccessModal}
+          onClick={onCloseSuccessModal}
+        >
+          Понятно
+        </Button>
+      </Modal>
+      <PrivacyPolicyModal
+        isShowed={isShowedPrivacyPolicyModal}
+        onClickSubmit={() => onClickIAgree()}
+        onClickClose={() => onClosePrivacyPolicyModal()}
+      />
     </div>
   )
 }

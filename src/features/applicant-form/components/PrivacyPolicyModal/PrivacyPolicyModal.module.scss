@@ -1,0 +1,57 @@
+@import 'style/vars';
+@import 'style/mixins';
+
+.modalContainer {
+  max-width: 758px;
+  max-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title {
+  @include h3;
+  text-align: center;
+  padding: 40px 40px 32px;
+}
+
+.body {
+  overflow-y: scroll;
+  padding: 0 40px;
+  font-size: 20px;
+  line-height: 1.9em;
+  color: $colorGray9;
+}
+
+.footer {
+  padding: 40px;
+  text-align: center;
+  position: relative;
+
+  &::after {
+    height: 30px;
+    display: block;
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  }
+}
+
+.button {
+  width: 360px;
+}
+.closeButton {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+}

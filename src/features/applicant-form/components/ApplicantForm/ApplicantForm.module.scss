@@ -10,8 +10,16 @@
   }
 }
 
+.formHeader {
+  margin-bottom: 48px;
+}
+
 .section {
-  margin-bottom: 40px;
+  margin-bottom: 16px;
+
+  &_genders {
+    margin-bottom: 40px;
+  }
 }
 
 .sectionTitle {
@@ -42,9 +50,9 @@
 .inputField {
   margin-bottom: 24px;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+  //&:last-child {
+  //  margin-bottom: 0;
+  //}
 
   @media screen and (min-width: $desktop) {
     flex: 0 0 50%;
@@ -58,10 +66,7 @@
 
 .radioField {
   margin-right: 40px;
-
-  &:last-child {
-    margin-right: 0;
-  }
+  margin-bottom: 24px;
 
   @media screen and (min-width: $desktop) {
     flex: 0 0 50%;
@@ -70,6 +75,76 @@
   }
 }
 
-.button {
+.checkboxField {
+  margin-bottom: 24px;
+
+  @media screen and (min-width: $desktop) {
+    padding: 0 40px;
+  }
+}
+
+.submitButton {
   width: 100%;
+}
+
+.modalContainer {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  position: relative;
+
+  @media screen and (min-width: $desktop) {
+    width: 547px;
+    padding: 40px;
+  }
+}
+
+.successModalCloseButton {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+}
+
+.successModalTitle {
+  font-weight: 700;
+  font-size: $fontSizeH3;
+  line-height: 1.5em;
+  text-align: center;
+  color: $colorGray9;
+  margin-bottom: 8px;
+}
+
+.successModalText {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5em;
+  text-align: center;
+  color: $colorGray9;
+  margin-bottom: 40px;
+}
+
+.closeSuccessModal {
+  width: 100%;
+
+  @media screen and (min-width: $desktop) {
+    width: 360px;
+  }
+}
+
+.privacyPolicyLink {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: $fontSizeSmall;
+  text-decoration: underline;
+  color: $colorBlueDefault;
+  cursor: pointer;
 }

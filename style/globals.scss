@@ -1,5 +1,6 @@
 @import '~reset-css/sass/reset';
 @import 'style/vars';
+@import 'style/mixins';
 
 * {
   box-sizing: border-box;
@@ -21,4 +22,12 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+strong {
+  font-weight: 700;
+}
+
+h1 {
+  @include h1
 }

@@ -1,0 +1,54 @@
+@import 'style/vars';
+
+.root {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+}
+
+.input {
+  appearance: none;
+  background-color: $colorGray1;
+  border: 1px solid $colorGray5;
+  border-radius: 2px;
+  cursor: pointer;
+  font: inherit;
+  height: 16px;
+  margin: 0;
+  position: relative;
+  width: 16px;
+
+  &::before {
+    background-color: $colorBlueDefault;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scale(0);
+    transition: .2s transform ease-in-out;
+    width: 100%;
+  }
+
+  &:checked {
+    border-color: $colorBlueDefault;
+
+    &::before {
+      transform: scale(1);
+    }
+  }
+
+  &:checked + .checkIcon {
+    opacity: 1;
+  }
+}
+
+.checkIcon {
+  position: absolute;
+  top: 4px;
+  left: 2px;
+  opacity: 0;
+  pointer-events: none;
+}

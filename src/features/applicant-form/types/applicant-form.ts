@@ -5,6 +5,7 @@ export type TFormData = {
   gender: string;
   file: File | undefined;
   github: string;
+  privacyPolicy: boolean;
 }
 
 export type TFormErrors = {

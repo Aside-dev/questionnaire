@@ -3,13 +3,16 @@ import { ChangeEvent, FocusEvent, useMemo, useState } from "react";
 import { formValidators } from '@/helpers/validators'
 import { TFormData, TFormErrors } from '../../types/applicant-form'
 
+const axios = require('axios').default;
+
 const INITIAL_FORM_DATA: TFormData = {
   name: '',
   surname: '',
   email: '',
   gender: '',
   file: undefined,
-  github: ''
+  github: '',
+  privacyPolicy: false
 }
 
 const INITIAL_FORM_ERRORS: TFormErrors = {
@@ -24,6 +27,8 @@ const INITIAL_FORM_ERRORS: TFormErrors = {
 const ApplicantFormContainer = () => {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA)
   const [formErrors, setFormErrors] = useState(INITIAL_FORM_ERRORS)
+  const [isShowedSuccessModal, setIsShowedSuccessModal] = useState(false)
+  const [isShowedPrivacyPolicyModal, setIsShowedPrivacyPolicyModal] = useState(false)
   const formRequiredFields = Object.keys(INITIAL_FORM_DATA).filter(field => !['file', 'github'].includes(field))
   const errorMessageDictionary = {
     empty: 'Поле не должно быть пустым',
@@ -72,8 +77,16 @@ const ApplicantFormContainer = () => {
    * @param fieldName - имя поля
    * @param event - объект ивента
    */
-  const onChangeFormField = (fieldName: string, event: ChangeEvent<HTMLInputElement>) => {
-    const value = fieldName === 'file' ? (event.target.files || [])[0] || '' : event.target.value
+  const onChangeFormField = (fieldName: string, event?: ChangeEvent<HTMLInputElement>) => {
+    let value;
+
+    if (fieldName === 'file') {
+      value = (event?.target.files || [])[0] || undefined
+    } else if (fieldName === 'privacyPolicy') {
+      value = !formData.privacyPolicy
+    } else {
+      value = event?.target.value
+    }
 
     setFormData({ ...formData, [fieldName]: value })
     setFormErrors({ ...formErrors, [fieldName]: '' })
@@ -111,17 +124,41 @@ const ApplicantFormContainer = () => {
       return null
     }
 
-    // fetch('http://localhost:3000/api/applicant-form', {
-    //   method: 'POST',
-    //   body: reqFormData
-    // }).then(r => )
+    axios.post('/api/applicant-form', reqFormData).then(() => {
+      setIsShowedSuccessModal(true)
+    })
+  }
+
+  const onCloseSuccessModal = () => {
+    setIsShowedSuccessModal(false)
+    setFormData(INITIAL_FORM_DATA)
+    setFormErrors(INITIAL_FORM_ERRORS)
+  }
+
+  const onClickIAgree = () => {
+    setFormData({ ...formData, privacyPolicy: true })
+    setIsShowedPrivacyPolicyModal(false)
+  }
+
+  const onOpenPrivacyPolicyModal = () => {
+    setIsShowedPrivacyPolicyModal(true)
+  }
+
+  const onClosePrivacyPolicyModal = () => {
+    setIsShowedPrivacyPolicyModal(false)
   }
 
   return (
     <ApplicantForm
       formData={formData}
       formErrors={formErrors}
+      isShowedSuccessModal={isShowedSuccessModal}
       isDisabledSubmit={isEmptyRequiredFields}
+      isShowedPrivacyPolicyModal={isShowedPrivacyPolicyModal}
+      onClickIAgree={onClickIAgree}
+      onOpenPrivacyPolicyModal={onOpenPrivacyPolicyModal}
+      onClosePrivacyPolicyModal={onClosePrivacyPolicyModal}
+      onCloseSuccessModal={onCloseSuccessModal}
       onChangeFormField={onChangeFormField}
       onBlurFormField={onBlurFormField}
       onSubmit={onSubmitForm}
