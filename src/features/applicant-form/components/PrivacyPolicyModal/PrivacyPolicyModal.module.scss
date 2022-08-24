@@ -29,7 +29,7 @@
   text-align: center;
 
   &::after {
-    background: linear-gradient(0deg, white 0%, rgb(white / 0%) 100%);
+    background: linear-gradient(0deg, white 0%, rgb(255 255 255 / 0%) 100%);
     content: '';
     display: block;
     height: 30px;
